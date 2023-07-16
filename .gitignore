@@ -2,3 +2,6 @@
 queries/__pycache__/
 /notes/.ipynb_checkpoints/
 /data/
+.vscode
+.mypy_cache
+__pycache__
