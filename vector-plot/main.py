@@ -1,9 +1,9 @@
 from db.database import *
 from utils.functions import *
-import matplotlib.pyplot as plt
-import numpy as np
 
 if __name__ == '__main__':
+    # Obtém os dataframes de coordenadas e magnitude
+    # a partir de suas respectivas tabelas
     df = get_coordenadas()
     df_mag = get_magnitude()
     
@@ -13,4 +13,8 @@ if __name__ == '__main__':
     # Limpa o valor das magnitudes
     df_clean = clean_df(df)
 
-    show_plot(df_clean, **get_config())
+    # Obtém as configurações do plot a partir do config.yaml
+    config = get_config()
+    
+    # Plota os dados
+    show_plot(df_clean, **config)

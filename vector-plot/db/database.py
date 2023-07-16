@@ -1,4 +1,5 @@
 import pandas as pd
+from sqlalchemy import text
 
 SQLALCHEMY_DATABASE_URL = "mysql+pymysql://prometheus:12345@0.0.0.0:3306/data_vector"
 

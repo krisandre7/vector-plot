@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import yaml
 from pandas import DataFrame
 
+"""Limpa o ruído nas magnitudes, a partir de intervalos encontrados no notebook exploration.ipynb"""
 def clean_df(df: DataFrame):
     index_0 = df['mag'].between(0, 500, "neither")
     df.loc[index_0, 'mag'] = 0
@@ -17,26 +18,31 @@ def clean_df(df: DataFrame):
 
     return df
 
+"""Plota os vetores num scatter 3D"""
 def show_plot(df: DataFrame, show_id: int, 
               show_0: bool, show_1000: bool, 
               show_2000: bool, show_3000: bool):
     
+    # Mostra somente o ID escolhido
     df_id = df.loc[df['id'] == show_id]
     
+    # Caso o ID não exista nos dados retorna erro
     if df_id.shape[0] == 0:
         raise Exception("ID não existe nos dados!")
     
-    if (show_0 or show_1000 or show_2000 or show_3000) is False:
+    # Caso nenhuma magnitude seja mostrada retorna erro
+    if not (show_0 or show_1000 or show_2000 or show_3000):
         raise Exception("Nenhuma magnitude escolhida! Escolha ao menos uma.")
     
     ax = plt.axes(projection ="3d")
     
-    # frames de cad magnitude
+    # frames de cada magnitude
     df_0 = df_id.loc[df_id['mag'] == 0]
     df_1000 = df_id.loc[df_id['mag'] == 1000]
     df_2000 = df_id.loc[df_id['mag'] == 2000]
     df_3000 = df_id.loc[df_id['mag'] == 3000]
 
+    # Cria um eixo para a magnitude caso tenha sido habilitado
     if show_0:
         ax.scatter3D(df_0['x'], df_0['y'], df_0['z'], label="0") # type: ignore
         
