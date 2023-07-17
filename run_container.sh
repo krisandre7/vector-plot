@@ -10,7 +10,7 @@ then
     docker container start mysql-python
 else
     # cria o container caso não foi criado
-    docker run --name mysql-python  -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -e MYSQL_USER=prometheus -e MYSQL_PASSWORD=12345 -e MYSQL_DATABASE=data_vector -d mysql:8.0.33
+    docker run --name mysql-python -p 3306:3306 -d mysql-vector
 fi
 
 # docker stop mysql-python
